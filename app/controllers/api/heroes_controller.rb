@@ -2,7 +2,7 @@ class Api::HeroesController < ApplicationController
   before_action :set_hero, only: [:show, :update, :destroy]
 
   def index
-    @heroes = Hero.sorted_by_name
+    @heroes = Hero.search(params[:term]).sorted_by_name
 
     render json: @heroes
   end
