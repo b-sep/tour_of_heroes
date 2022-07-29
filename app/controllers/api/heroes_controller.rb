@@ -1,8 +1,11 @@
 class Api::HeroesController < ApplicationController
-  before_action :set_hero, only: [:show, :update, :destroy]
+  include Authenticable
+
+  before_action :authenticate_with_token, except: %i[index show]
+  before_action :set_hero, only: %i[show update destroy]
 
   def index
-    @heroes = Hero.sorted_by_name
+    @heroes = Hero.search(params[:term]).sorted_by_name
 
     render json: @heroes
   end
@@ -16,7 +19,7 @@ class Api::HeroesController < ApplicationController
     @hero = Hero.new(hero_params)
 
     if @hero.save
-      render json: @hero, status: :created, location: @hero
+      render json: @hero, status: :created, location: api_hero_path(@hero)
     else
       render json: @hero.errors, status: :unprocessable_entity
     end
