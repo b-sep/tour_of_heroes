@@ -11,12 +11,18 @@ gem "active_model_serializers", "~> 0.10.13"
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'net-smtp'
 
-group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+group :test do
+  gem "shoulda-matchers", "~> 5.1"
+  gem "simplecov", "~> 0.21.2", require: false
 end
 
 group :development do
   gem 'listen', '~> 3.3'
-  gem "faker", "~> 2.22"
   gem 'spring'
+end
+
+group :development, :test do
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "faker", "~> 2.22"
+  gem "rspec-rails", "~> 5.1"
 end
