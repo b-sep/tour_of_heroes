@@ -10,6 +10,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem "active_model_serializers", "~> 0.10.13"
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'net-smtp'
+gem 'rubocop', require: false
 
 group :test do
   gem "shoulda-matchers", "~> 5.1"
